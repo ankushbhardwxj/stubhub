@@ -30,7 +30,7 @@ router.post("/api/users/signup", [emailValidator, passwordValidator], validateRe
     req.session = {jwt: userJwt};
     res.status(201).send(user);
 
-  })
+  });
 
 export {router as signupRouter};
 
