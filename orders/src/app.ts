@@ -3,10 +3,11 @@ import bodyParser from "body-parser";
 import cookieSession from "cookie-session";
 import 'express-async-errors';
 import {errorHandler, NotFoundError} from "@ankushstubhub/common";
-import {createTicketRouter} from "./routes/new";
-import {showTicketRouter} from "./routes/show";
-import {indexTicketRouter} from "./routes";
-import {updateTicketRouter} from "./routes/update";
+import {deleteOrderRouter} from "../routes/delete";
+import {indexOrderRouter} from "../routes";
+import {newOrderRouter} from "../routes/new";
+import {showOrderRouter} from "../routes/show";
+
 
 const app = express();
 app.set('trust proxy', true);
@@ -16,10 +17,10 @@ app.use(cookieSession({
   secure: process.env.NODE_ENV !== "test"
 }));
 
-app.use(createTicketRouter);
-app.use(showTicketRouter);
-app.use(indexTicketRouter);
-app.use(updateTicketRouter);
+app.use(indexOrderRouter);
+app.use(newOrderRouter);
+app.use(deleteOrderRouter);
+app.use(showOrderRouter);
 
 app.all("*", async (req, res) => {throw new NotFoundError();})
 app.use(errorHandler);
