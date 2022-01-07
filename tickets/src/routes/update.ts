@@ -22,7 +22,8 @@ router.put("/api/tickets/:id", requireAuth, validator, validateRequest, async (r
     id: ticket.id,
     title: String(ticket.title),
     price: ticket.price,
-    userId: String(ticket.userId)
+    userId: String(ticket.userId),
+    version: ticket.version
   })
   res.send(ticket);
 });
